@@ -21,6 +21,8 @@ def download_webpage(url,user_agent='funnel_web',num_retries=3,charset='utf-8', 
             cs = charset
         print(response)
         html_page = response.text.encode(cs)
+        with open('page_downloaded.html','w') as file:
+            file.write(str(html_page))
     except requests.exceptions.RequestException as e:
         print('Error while downloading page:', e.response.status_code, e.response.reason)
         html_page = None
@@ -32,7 +34,7 @@ def download_webpage(url,user_agent='funnel_web',num_retries=3,charset='utf-8', 
     return html_page
 
 def main():
-    page = download_webpage('http://www.worten.pt')
+    page = download_webpage('http://andrediasesp.github.io')
 
 if __name__ == '__main__':
     main()
