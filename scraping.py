@@ -9,11 +9,11 @@ def regex_scrap(url,search_regex):
     html = download_webpage(url)
     content = re.findall(search_regex,html)
     print(content)
+    return content
 
 
 def main():
-    #regex_scrap('https://www.worten.pt/promocoes?page=1&categoria=Gaming%20e%20Entretenimento',r'<td class="w2p_fw">(.*?)</td>')
-    regex_scrap('https://www.worten.pt/promocoes?page=1&categoria=Gaming%20e%20Entretenimento',r'<div class="w-product qa-product__content.*data-category="(.*?)"')
-
+    # Returns a list of (games,prices) in promotion
+    games = regex_scrap('https://www.worten.pt/promocoes?page=1&categoria=Gaming%20e%20Entretenimento',r'<div class="w-product qa-product__content.*data-category="(.*?)".*data-price="(.*?)"')
 if __name__ == '__main__':
     main()
