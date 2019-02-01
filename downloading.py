@@ -15,14 +15,12 @@ def download_webpage(url,user_agent='funnel_web',num_retries=3,charset='utf-8', 
         #print(type(response.headers))
         #print(response.headers)
         cs = response.encoding
-        #print(cs)
         # If no charset specified in http header then decode using the default UTF-8
         if not cs:
             cs = charset
-        print(response)
         html_page = response.text.encode(cs)
-        with open('page_downloaded.html','w') as file:
-            file.write(str(html_page))
+        #with open('page_downloaded.html','w') as file:
+            #file.write(str(html_page))
     except requests.exceptions.RequestException as e:
         print('Error while downloading page:', e.response.status_code, e.response.reason)
         html_page = None
