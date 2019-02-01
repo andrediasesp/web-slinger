@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3
 import requests
 
-def download_webpage(url,user_agent='funnel_web',num_retries=3,charset='utf-8', proxy = None):
+def download_webpage(url,user_agent='funnel_web',num_retries=3, proxy = None):
     """
     Downloads the HTML of a given URL using the Requests Framework
     """
@@ -14,13 +14,11 @@ def download_webpage(url,user_agent='funnel_web',num_retries=3,charset='utf-8', 
         response.raise_for_status()
         #print(type(response.headers))
         #print(response.headers)
-        cs = response.encoding
-        # If no charset specified in http header then decode using the default UTF-8
-        if not cs:
-            cs = charset
-        html_page = response.text.encode(cs)
+        print(response.encoding)
+        html_page = response.text
+        print(html_page)
         #with open('page_downloaded.html','w') as file:
-            #file.write(str(html_page))
+        #file.write(str(html_page))
     except requests.exceptions.RequestException as e:
         print('Error while downloading page:', e.response.status_code, e.response.reason)
         html_page = None
@@ -32,7 +30,7 @@ def download_webpage(url,user_agent='funnel_web',num_retries=3,charset='utf-8', 
     return html_page
 
 def main():
-    page = download_webpage('http://andrediasesp.github.io')
+    page = download_webpage('http://www.worten.pt')
 
 if __name__ == '__main__':
     main()
