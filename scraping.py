@@ -18,7 +18,7 @@ def soup_html(html):
     soup = BeautifulSoup(html,'html5lib')
     return soup
 
-def search_soup(html):
+def search_soup(html,info = []):
     """
     Searching the Soup element for games in promotion state. Inspect your target HTML to retrieve the elements.
     Returns a dict with products relevant attribs
@@ -28,18 +28,16 @@ def search_soup(html):
     with open("soup_object.html",'w') as soup_file:
         soup_file.write(str(content))
     # Create Ordered Dict to be returned
-    od = dict()
-    id = 0
+    #od = dict()
     # Loop elements
     for element in content:
             game = element.find("img")['title']
             price = element.find("span", class_="w-currentPrice").text
             #promotion = "{} ---- {}".format(game,price)
             #print(promotion)
-            od[id] = [game,price]
-            id += 1
-    print(od)
-    return od
+            info.append((game,price))
+    print(info)
+    return info
 
 
 def main():
