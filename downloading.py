@@ -28,9 +28,3 @@ def download_webpage(url,user_agent='funnel_web',num_retries=3, proxy = None):
                 return download_webpage(url,num_retries = num_retries - 1)
         #print(e.response.status_code)
     return html_page
-
-def main():
-    page = download_webpage('https://andrediasesp.github.io/')
-
-if __name__ == '__main__':
-    main()
