@@ -8,6 +8,7 @@ def download_webpage(url,user_agent='funnel_web',num_retries=3, proxy = None):
     print('Downloading webpage from: ' + str(url) + '\n...')
     # Create a request object for url to get
     headers = {'User-Agent': user_agent}
+    # Only taking care of HTTP proxies, if HTTPS proxies are required, add it into function param and in the following dict
     proxies = {'http': proxy}
     try:
         response = requests.get(url, headers=headers, proxies= proxies)
