@@ -13,18 +13,12 @@ def download_webpage(url,user_agent='funnel_web',num_retries=3, proxy = None):
     try:
         response = requests.get(url, headers=headers, proxies= proxies)
         response.raise_for_status()
-        #print(type(response.headers))
-        #print(response.headers)
-        #print(response.encoding)
+        print(response.headers)
         html_page = response.text
-        #print(html_page)
-        #with open('page_downloaded.html','w') as file:
-        #file.write(str(html_page))
     except requests.exceptions.RequestException as e:
         print('Error while downloading page:', e.response.status_code, e.response.reason)
         html_page = None
         if num_retries > 0 and 500 <= e.response.status_code < 600:
                 # Retry downloading the page for 3 times for 5xx error codes (Server Side)
                 return download_webpage(url,num_retries = num_retries - 1)
-        #print(e.response.status_code)
     return html_page
