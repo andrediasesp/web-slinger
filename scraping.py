@@ -5,7 +5,8 @@ from downloading import download_webpage
 
 def regex_scrap(url,search_regex):
     """
-    Scrap specific urls using a search regex. Returns a list of all matches to process
+    Scrap specific urls using a search regex.
+    Returns a list of all matches to process
     """
     html = download_webpage(url)
     content = re.findall(search_regex,html)
@@ -20,21 +21,18 @@ def soup_html(html):
 
 def search_soup(html,info = []):
     """
-    Searching the Soup element for games in promotion state. Inspect your target HTML to retrieve the elements.
-    Returns a dict with products relevant attribs
+    Searching the Soup element for games in promotion state.
+    Inspect your target HTML to retrieve the elements.
+    Returns a tuples list with products relevant attribs e.g. (Game,Price)
     """
     content = html.find_all("div",{"class": "w-product"})
     # Writing to a file for easier analysis
     with open("soup_object.html",'w') as soup_file:
         soup_file.write(str(content))
-    # Create Ordered Dict to be returned
-    #od = dict()
     # Loop elements
     for element in content:
             game = element.find("img")['title']
             price = element.find("span", class_="w-currentPrice").text
-            #promotion = "{} ---- {}".format(game,price)
-            #print(promotion)
             info.append((game,price))
     print(info)
     return info
