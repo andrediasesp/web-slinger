@@ -4,6 +4,7 @@ import crawlers
 import scraping
 import pymongo
 from datetime import datetime
+import re
 
 
 def run_slinger(url):
@@ -18,7 +19,8 @@ def run_slinger(url):
     data = crawlers.crawl_website_ID(url)
     dict = {}
     for a,b in data:
-        prom = {'game': a, 'price': b, 'insert_date': datetime.now()}
+        price = re.sub(r'[€]','',b)
+        prom = {'game': a, 'price': float(price.replace(',', '.')), 'insert_date': datetime.now()}
         result = database.promotions.insert_one(prom)
 
 def main():
