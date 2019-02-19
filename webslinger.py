@@ -4,8 +4,6 @@ import crawlers
 import scraping
 import pymongo
 from datetime import datetime
-import itertools
-
 
 
 def run_slinger(url):
