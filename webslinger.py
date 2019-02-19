@@ -20,7 +20,7 @@ def run_slinger(url):
     dict = {}
     for a,b in data:
         price = re.sub(r'[€]','',b)
-        prom = {'game': a, 'price': float(price.replace(',', '.')), 'insert_date': datetime.now()}
+        prom = {'game': a, 'price': float(price.replace(',', '.')),'currency': 'euro-€', 'insert_date': datetime.now()}
         result = database.promotions.insert_one(prom)
 
 def main():
