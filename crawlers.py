@@ -25,9 +25,10 @@ def crawl_website_ID(url, max_errors = 3):
     # Creating a seen set to prevent website redirection to last page when surpassing page id
     seen = set()
     collect = []
-    #for id in itertools.count(start=1):
+    # Crawl all website ids
+    for id in itertools.count(start=1):
     # Testing only for the first four webpages
-    for id in range(1,5):
+    #for id in range(1,5):
         page_id = '{}{}'.format(url,id)
         if page_id not in seen:
             seen.add(page_id)
