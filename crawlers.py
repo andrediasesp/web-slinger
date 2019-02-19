@@ -22,9 +22,12 @@ def crawl_website_ID(url, max_errors = 3):
         retrieve info from website pages.
         Returns a List of all the information found across all pages scrapped
     """
-    seen = set(url)
-    info = []
-    for id in itertools.count(1):
+    # Creating a seen set to prevent website redirection to last page when surpassing page id
+    seen = set()
+    collect = []
+    #for id in itertools.count(start=1):
+    # Testing only for the first four webpages
+    for id in range(1,5):
         page_id = '{}{}'.format(url,id)
         if page_id not in seen:
             seen.add(page_id)
@@ -38,5 +41,14 @@ def crawl_website_ID(url, max_errors = 3):
             else:
                 num_errors = 0
                 soup = scraping.soup_html(html_page)
-                info.extend(scraping.search_soup(soup,info))
-    return info
+                add_collect = scraping.search_soup(soup)
+                #print(add_collect)
+    collect.extend(add_collect)
+    return collect
+
+
+def main():
+    crawl_website_ID('https://www.worten.pt/promocoes?categoria=Gaming%20e%20Entretenimento&tipologia=Jogos%20PS4&page=')
+
+if __name__ == '__main__':
+    main()
