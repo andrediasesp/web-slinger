@@ -23,7 +23,8 @@ python webslinger.py
 ```
 
 ### MongoDB
-After running the file above, all the games and prices information were retrieved and stored in a MongoDB database. At this point we can query, manipulate or add any data that we want.
+After running the file above, all the games and prices information were retrieved and stored in a MongoDB database. At this point we have created a collection in a MongoDB Database, where we can query, manipulate or add any kind of data.
+
 <p align="center">
 <img src="imgs/mongodb.png">
 </p>
