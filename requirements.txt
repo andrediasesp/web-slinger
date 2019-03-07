@@ -1,0 +1,8 @@
+beautifulsoup4
+pymongo
+requests
+mongoengine
+graphene>=2.0
+graphene_mongo
+Flask
+Flask-GraphQL
